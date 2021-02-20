@@ -1,0 +1,34 @@
+﻿@model Empregare.Models.Usuario
+
+@{
+    Layout = "_LayoutNotLogin";
+    ViewData["Title"] = "Finalizar Cadastro";
+
+}
+
+
+<form asp-action="FinalizarCadastro">
+    <div class="account-wall">
+        <div class="form-group title">
+            <h1 class="text-center">Cadastro de usuário</h1>
+            <h5 class="text-center">Confirme o endereço de e-mail para concluir</h5>
+        </div>
+        <input type="hidden" asp-for="Nome" class="form-control" />
+        <input id="telefone" type="hidden" asp-for="Telefone" class="form-control" />
+        <input type="hidden" asp-for="Email" class="form-control" />
+        <input type="hidden" asp-for="Senha" class="form-control" />
+
+        <div class="form-group divSpaceMargin">
+            @if (ViewBag.Msg != null)
+            {
+    <div class="msgErro">@ViewBag.Msg</div>            }
+        </div>
+        <div class="divSpaceMargin">
+            <input type="submit" value="Confirmar email" class="btn btn-block btn-success" />
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
