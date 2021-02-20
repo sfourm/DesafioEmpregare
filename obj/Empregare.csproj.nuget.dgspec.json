@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Empregare\\Outos exemplos\\Empregare\\Empregare.csproj": {}
+    "D:\\Git\\Empregare\\Empregare.csproj": {}
   },
   "projects": {
-    "D:\\Empregare\\Outos exemplos\\Empregare\\Empregare.csproj": {
+    "D:\\Git\\Empregare\\Empregare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Empregare\\Outos exemplos\\Empregare\\Empregare.csproj",
+        "projectUniqueName": "D:\\Git\\Empregare\\Empregare.csproj",
         "projectName": "Empregare",
-        "projectPath": "D:\\Empregare\\Outos exemplos\\Empregare\\Empregare.csproj",
+        "projectPath": "D:\\Git\\Empregare\\Empregare.csproj",
         "packagesPath": "C:\\Users\\Samuel\\.nuget\\packages\\",
-        "outputPath": "D:\\Empregare\\Outos exemplos\\Empregare\\obj\\",
+        "outputPath": "D:\\Git\\Empregare\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Samuel\\AppData\\Roaming\\NuGet\\NuGet.Config",
