@@ -1,3 +1,14 @@
-﻿@{
-    Layout = "_Layout";
+﻿@using Microsoft.AspNetCore.Http
+
+@{ string layout = "";
+
+    if (!string.IsNullOrEmpty(Context.Session.GetString("UsuarioId")))
+    {
+        layout = "_LayoutCandidato";
+    }
+    else
+    {
+        layout = "_Layout";
+    }
+    Layout = layout; 
 }

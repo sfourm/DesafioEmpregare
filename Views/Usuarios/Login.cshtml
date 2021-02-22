@@ -1,0 +1,58 @@
+﻿@model Empregare.ViewModel.Login
+
+@{  
+    ViewData["Title"] = "Login"; 
+    Layout = "_LayoutNulo";
+}
+
+<!-- Modal -->
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form asp-action="Login">
+            <div class="modal-body">
+
+                <div class="account-wall">
+                    <div class="form-group title">
+                        <h1 class="text-center">Sistema de Login</h1>
+                    </div>
+                    <div class="form-group divSpaceMargin">
+                        @if (ViewBag.Erro != null)
+                        {<div class="msgErro">@ViewBag.Erro</div>}
+                    </div>
+                    <div class="form-group divSpaceMargin">
+                        <label asp-for="Email" class="control-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group divSpaceMargin">
+                        <label asp-for="Senha" class="control-label"></label>
+                        <input asp-for="Senha" class="form-control" />
+                        <span asp-validation-for="Senha" class="text-danger"></span>
+                    </div>
+                    <div class="form-group divSpaceMargin">
+                        <a href="#" class="pull-right">Esqueçeu a senha?</a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer d-block">
+                <div class="form-group divSpaceMargin">
+                    <input type="submit" value="Entrar" class="btn btn-lg btn-success btn-block" />
+                </div>
+                <div class="form-group divSpaceMargin">
+                    <a asp-action="Cadastro" class="btn btn-lg btn-block btnRegister">Cadastre-se</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

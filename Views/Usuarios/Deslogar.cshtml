@@ -1,0 +1,31 @@
+﻿
+@{ ViewData["Title"] = "Deslogar"; }
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Sair</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form asp-action="Deslogar" method="post">
+            <div class="modal-body">
+
+                <h3 class="text-center">Você realmente deseja sair?</h3>
+
+            </div>
+            <div class="modal-footer">
+                <div class="form-group divSpaceMargin" style="margin-top:45px;">
+                    <input type="button" value="Voltar" class="btn btn-lg  btn-block" />
+                </div>
+                <div class="form-group divSpaceMargin" style="margin-top:45px;">
+                    <input type="submit" value="Sim" class="btn btn-lg btn-danger">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
