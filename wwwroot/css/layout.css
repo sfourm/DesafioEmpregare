@@ -1,0 +1,128 @@
+﻿.cadastro {
+    background-color: #fff;
+}
+
+    .cadastro .cadastro-content {
+        margin: 2rem 4.5rem;
+        text-align: center;
+    }
+
+    .cadastro .image-container {
+        text-align: center;
+        margin-top: 8rem;
+    }
+
+        .cadastro .image-container img {
+            width: 100%
+        }
+
+    .cadastro h1 {
+        margin-bottom: 0px;
+        font-size: 2rem;
+        line-height: 3.125rem;
+    }
+
+    .cadastro h5 {
+        margin-bottom: 0px;
+        font-size: 1rem;
+    }
+
+    .cadastro .titulo {
+        margin-bottom: 4rem;
+        font-size: 1rem;
+    }
+
+    .cadastro .formCadastro {
+        max-width: 80%;
+        margin: auto;
+        min-width: 300px;
+    }
+
+    .cadastro .divCadastro {
+    }
+
+    .cadastro input {
+        display: block;
+        width: 100%;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        height: 35px;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+#cadastrar {
+    border: none;
+    color: white;
+    margin-top: 0px;
+    margin: auto;
+    padding: 8px 20px;
+    width: 80%;
+    height: auto;
+    font-size: 1.2rem;
+    background-color: #007CFF;
+}
+
+@media (max-width: 576px) {
+    .cadastro .cadastro-content {
+        margin: 5rem 2px;
+        text-align: center;
+    }
+}
+
+@media (min-width: 992px) {
+    .cadastro .cadastro-content {
+        margin: 3rem 15rem;
+        text-align: center;
+    }
+}
+
+.account-wall {
+    margin-top: 20px;
+    padding: 40px 0px 30px 0px;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.divSpaceMargin{
+    margin-left:15px;
+    margin-right:15px;
+}
+
+.msgErro {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.msgSuccess {
+    background-color: #5CB85C;
+    color: #2d8b2d;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.btnRegister {
+    border: 1px solid #5CB85C;
+    text-decoration: none;
+    color: #5CB85C;
+}
+
+.btnRegister:hover{
+    color: #2d8b2d;
+    border: 1px solid #2d8b2d;
+}
+
+.title{
+    margin-bottom:35px;
+}

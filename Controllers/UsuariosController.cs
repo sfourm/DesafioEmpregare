@@ -22,10 +22,6 @@ namespace Empregare.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
 
         /// [GET] Tela de cadastro
         /// </summary>
@@ -43,8 +39,8 @@ namespace Empregare.Controllers
         [HttpGet]
         public IActionResult ConfirmarEmail()
         {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Perfil));
-            if (TempData["RegistrarUsuario"] == null) return RedirectToAction(nameof(Index));
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Perfil));
+            if (TempData["RegistrarUsuario"] == null) return RedirectToAction(nameof(Login));
 
             ViewBag.Msg = TempData["Erro"];
             ViewBag.Email = TempData["EmailUser"];
@@ -66,7 +62,7 @@ namespace Empregare.Controllers
 
                 return View(registrarUsuario);
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Login));
         }
 
 
@@ -76,7 +72,7 @@ namespace Empregare.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Perfil));
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Perfil));
             return View();
         }
 
@@ -85,7 +81,7 @@ namespace Empregare.Controllers
         [HttpGet]
         public IActionResult Perfil()
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Index));
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Login));
             int id = Int32.Parse(HttpContext.Session.GetString("UsuarioId"));
             Usuario usuario = _context.Usuarios.Find(id);
             return View(usuario);
@@ -96,7 +92,7 @@ namespace Empregare.Controllers
         [HttpGet]
         public async Task<IActionResult> EditarPerfil(int? id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Index));
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Login));
             if (id == null)
             {
                 return NotFound();
@@ -122,7 +118,7 @@ namespace Empregare.Controllers
         [HttpGet]
         public async Task<IActionResult> EditarSenha(int? id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Index));
+            if (String.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Login));
             if (id == null)
             {
                 return NotFound();
@@ -141,10 +137,8 @@ namespace Empregare.Controllers
                 return NotFound();
             }
 
-            EditarSenha senhaEditarSenha = new EditarSenha
-            {
-                UsuarioId = usuario.UsuarioId
-            };
+            EditarSenha senhaEditarSenha = new EditarSenha();
+            senhaEditarSenha.UsuarioId = usuario.UsuarioId; 
             return View(senhaEditarSenha);
         }
 
@@ -153,7 +147,7 @@ namespace Empregare.Controllers
         [HttpGet]
         public IActionResult RecuperarSenha()
         {
-            if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Perfil));
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Perfil));
             return View();
         }
 
@@ -161,16 +155,16 @@ namespace Empregare.Controllers
         //[POST] Recuperar senha
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult RecuperarSenha(RecuperarSenha recuperarSenha)
+        public IActionResult RecuperarSenha(RecuperarSenha forgotPasswordModel)
         {
-            if (!EmailUsuarioExiste(recuperarSenha.Email)) ModelState.AddModelError("Email", "O e-mail não existe");
+            if (!EmailUsuarioExiste(forgotPasswordModel.Email)) ModelState.AddModelError("Email", "O e-mail não existe");
             ViewBag.MsgSuccess = null;
             if (ModelState.IsValid)
             {
                 ViewBag.MsgSuccess = "Foi enviado um e-mail para você";
-                SendEmail(recuperarSenha.Email, "Usuário", "Recuperação de senha", "Recupere sua senha", "Utilize o link para recuperar o acesso", "https://localhost:44332/Usuarios/");
+                SendEmail(forgotPasswordModel.Email, "Usuário", "Recuperação de senha", "Recupere sua senha", "Utilize o link para recuperar o acesso", "https://localhost:44332/Usuarios/");
             }
-            return View(recuperarSenha);
+            return View(forgotPasswordModel);
         }
 
 
@@ -243,7 +237,7 @@ namespace Empregare.Controllers
 
 
         /// <summary>
-        /// [POST] Tela de cadastro 
+        /// [POST] Tela de cadastro parte 1 do usuário
         /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -251,7 +245,7 @@ namespace Empregare.Controllers
         public IActionResult Cadastro(Cadastro cadastroModel)
         {
             var usuario = new Usuario();
-            Cryptography cryptography = new Cryptography(MD5.Create());
+            Cryptography cryptography = new Cryptography(System.Security.Cryptography.MD5.Create());
 
             //Verifica se email existe
             if (EmailUsuarioExiste(cadastroModel.Email)) ModelState.AddModelError("Email", "O e-mail inserido já existe");
@@ -279,7 +273,7 @@ namespace Empregare.Controllers
 
 
                 //Enviar e-mail pra confirmar email pra cadastro 
-                SendEmail(usuario.Email, usuario.Nome, "Confirme seu cadastro", "Verificação de Email", "Você criou uma conta no sistema de login <b>.NET CORE?</b>Se sim, cofirme seu email seguindo os passos abaixo.", "https://localhost:44332/Usuarios/FinalizarCadastro?id=");
+                SendEmail(usuario.Email, usuario.Nome, "Confirme seu cadastro", "Verificação de Email", "Você criou uma conta no sistema de login .NET CORE, termine seu registro realizando os passos abaixo.", "https://localhost:44332/Usuarios/FinalizarCadastro?id=");
                 TempData["RegistrarUsuario"] = JsonConvert.SerializeObject(usuario);
                 TempData["EmailUsuario"] = usuario.Email;
                 return RedirectToAction(nameof(ConfirmarEmail));
@@ -293,7 +287,7 @@ namespace Empregare.Controllers
         /// [POST] Tela de finalizar cadastro
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> FinalizarCadastro(Usuario usuario)
+        public async Task<IActionResult> FinalizarCadastro(Models.Usuario usuario)
         {
             ViewBag.Msg = null;
             try
@@ -321,13 +315,47 @@ namespace Empregare.Controllers
             {
                 if (Login(loginModel.Email, loginModel.Senha))
                 {
-                    return base.RedirectToAction(nameof(Perfil));
+                    return RedirectToAction(nameof(Perfil));
                 }
                 ViewBag.Erro = "E-mail ou senha incorretos";
             }
             return View();
         }
 
+
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Usuarios.ToListAsync());
+        }
+
+        // GET: Users/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(m => m.UsuarioId == id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return View(usuario);
+        }
+
+        // POST: Users/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var usuario = await _context.Usuarios.FindAsync(id);
+            _context.Usuarios.Remove(usuario);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
 
         //Verifica se o usuario existe pelo ID
         private bool UsuarioExiste(int id)
@@ -339,7 +367,7 @@ namespace Empregare.Controllers
         //Verifica se um email já esta cadastrado
         private bool EmailUsuarioExiste(string email)
         {
-            if (string.IsNullOrEmpty(email)) return false;
+            if (String.IsNullOrEmpty(email)) return false;
 
             Usuario procurarEmail = _context.Usuarios.Where(m => m.Email.Equals(email)).FirstOrDefault();
             if (procurarEmail != null) return true;
@@ -350,7 +378,7 @@ namespace Empregare.Controllers
         //Verifica se o telefone já está cadastrado
         private bool TelefoneUsuarioExiste(string telefone)
         {
-            if (string.IsNullOrEmpty(telefone)) return false;
+            if (String.IsNullOrEmpty(telefone)) return false;
 
             Usuario procurarTelefone = _context.Usuarios.Where(m => m.Telefone.Equals(telefone)).FirstOrDefault();
             if (procurarTelefone != null) return true;
@@ -434,7 +462,7 @@ namespace Empregare.Controllers
                                                         <tr>
                                                             <td style=""font-family:Helvetica,arial,sans-serif;line-height:160%;padding-bottom:32px;text-align:center"">
                                                                 <p style=""margin:0"">
-                                                                    Esta é a <b>{2}</b> da <b>EMPREGARE.</b> {3}
+                                                                    Este é a <b>{2}</b> da <b>EMPREGARE.</b> {3}
                                                                 </p>
                                                             </td>
                                                         </tr>
@@ -471,7 +499,7 @@ namespace Empregare.Controllers
                                                                         <tr>
                                                                             <td align=""center"" valign=""middle"" style=""background-color:#8dd8f8;border-top-left-radius:4px;border-bottom-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:4px;background-clip:padding-box;font-size:16px;width: 100%;font-family:Helvetica,arial,sans-serif;text-align:center;color:#ffffff;font-weight:300;padding-left: 0px;padding-right: 0px;"">
                                                                                 <span style=""color:#ffffff;font-weight:600;display:flex;width:100%"">
-                                                                                    <a style=""color:#fff;line-height: 56px;text-align:center;align-items:center;justify-content:center;height:100%;width:100%;text-decoration:none;"" href=""{4}{5}"" target=""_blank""> {0} </a>
+                                                                                    <a style=""color:#fff;line-height: 56px;text-align:center;align-items:center;justify-content:center;height:100%;width:100%;text-decoration:none;"" href= ""{4}{5}"" target= ""_blank""> {0} </a>
                                                                                 </span>
                                                                             </td>
                                                                         </tr>
@@ -576,8 +604,9 @@ namespace Empregare.Controllers
             HttpContext.Session.Remove("UsuarioNome");
             HttpContext.Session.Remove("UsuarioEmail");
             HttpContext.Session.Remove("UsuarioId");
-            Response.Redirect("http://localhost:49204/");
+
         }
+
 
         //Inicia a session
         private void StartSessionLogin(Usuario usuario)
@@ -588,3 +617,4 @@ namespace Empregare.Controllers
         }
     }
 }
+

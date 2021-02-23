@@ -39,7 +39,7 @@ namespace Empregare.Models
                 sb.Append(caractere.ToString("X2"));
             }
 
-            //Retorna o hash convertendo de StringBuilder para string  
+            //Retorna o hash convertendo de StringBuilder para String  
             return sb.ToString();
         }
 
@@ -59,7 +59,7 @@ namespace Empregare.Models
             var hashString2 = this.HashGenerate(strings2);
 
             //Verificar igualdade
-            if (string.Equals(hashString1, hashString2)) return true;
+            if (String.Equals(hashString1, hashString2)) return true;
             return false;
         }
     }

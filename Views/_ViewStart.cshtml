@@ -4,11 +4,11 @@
 
     if (!string.IsNullOrEmpty(Context.Session.GetString("UsuarioId")))
     {
-        layout = "_LayoutCandidato";
+        layout = "_LayoutLogado";
     }
     else
     {
         layout = "_Layout";
     }
-    Layout = layout; 
+    Layout = layout;
 }

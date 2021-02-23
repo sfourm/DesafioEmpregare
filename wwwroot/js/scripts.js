@@ -17,4 +17,5 @@
         $(".humberger__menu__overlay").removeClass("active");
         $("body").removeClass("over_hid");
     });
+
 })(jQuery)
