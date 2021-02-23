@@ -22,6 +22,10 @@ namespace Empregare.Controllers
         {
             _context = context;
         }
+        public IActionResult Index()
+        {
+            return View();
+        }
 
         /// [GET] Tela de cadastro
         /// </summary>
@@ -37,11 +41,10 @@ namespace Empregare.Controllers
 
         /// [GET] Tela de aviso de envio de email 
         [HttpGet]
-        [Route("candidato/confirmar-email")]
         public IActionResult ConfirmarEmail()
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Perfil));
-            if (TempData["RegistrarUsuario"] == null) return RedirectToAction(nameof(Login));
+            if (TempData["RegistrarUsuario"] == null) return RedirectToAction(nameof(Index));
 
             ViewBag.Msg = TempData["Erro"];
             ViewBag.Email = TempData["EmailUser"];
@@ -52,7 +55,6 @@ namespace Empregare.Controllers
 
         /// [GET] Tela de finalizar cadastro
         [HttpGet]
-        [Route("candidato/confirmar-cadastro")]
         public IActionResult FinalizarCadastro(string id)
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Perfil));
@@ -64,7 +66,7 @@ namespace Empregare.Controllers
 
                 return View(registrarUsuario);
             }
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction(nameof(Index));
         }
 
 
@@ -81,10 +83,9 @@ namespace Empregare.Controllers
 
         /// [GET] Tela de dados do usuário logado
         [HttpGet]
-        [Route("candidato/perfil")]
         public IActionResult Perfil()
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Login));
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Index));
             int id = Int32.Parse(HttpContext.Session.GetString("UsuarioId"));
             Usuario usuario = _context.Usuarios.Find(id);
             return View(usuario);
@@ -93,10 +94,9 @@ namespace Empregare.Controllers
 
         /// [GET] Editar usuário
         [HttpGet]
-        [Route("candidato/editar-perfil/{id?}")]
         public async Task<IActionResult> EditarPerfil(int? id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Login));
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Index));
             if (id == null)
             {
                 return NotFound();
@@ -120,10 +120,9 @@ namespace Empregare.Controllers
 
         /// [GET] Edição de senha de acesso
         [HttpGet]
-        [Route("candidato/editar-senha/{id?}")]
         public async Task<IActionResult> EditarSenha(int? id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Login));
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Index));
             if (id == null)
             {
                 return NotFound();
@@ -152,7 +151,6 @@ namespace Empregare.Controllers
 
         //[GET] Recuperar senha
         [HttpGet]
-        [Route("candidato/recuperar-senha")]
         public IActionResult RecuperarSenha()
         {
             if (!string.IsNullOrEmpty(HttpContext.Session.GetString("UsuarioId"))) return RedirectToAction(nameof(Perfil));
@@ -163,7 +161,6 @@ namespace Empregare.Controllers
         //[POST] Recuperar senha
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("candidato/recuperar-senha")]
         public IActionResult RecuperarSenha(RecuperarSenha recuperarSenha)
         {
             if (!EmailUsuarioExiste(recuperarSenha.Email)) ModelState.AddModelError("Email", "O e-mail não existe");
@@ -180,7 +177,6 @@ namespace Empregare.Controllers
         ///[POST] Edição de senha de acesso
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("candidato/editar-senha")]
         public async Task<IActionResult> EditarSenha(int id, EditarSenha editarSenhaModel)
         {
             if (id != editarSenhaModel.UsuarioId)
@@ -217,7 +213,6 @@ namespace Empregare.Controllers
         /// [POST] Editar usuário
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("candidato/editar-perfil")]
         public async Task<IActionResult> EditarPerfil(int id, Usuario usuario)
         {
             if (id != usuario.UsuarioId)
@@ -298,8 +293,7 @@ namespace Empregare.Controllers
         /// [POST] Tela de finalizar cadastro
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("candidato/confirmar-cadastro")]
-        public async Task<IActionResult> FinalizarCadastro(Models.Usuario usuario)
+        public async Task<IActionResult> FinalizarCadastro(Usuario usuario)
         {
             ViewBag.Msg = null;
             try
@@ -477,7 +471,7 @@ namespace Empregare.Controllers
                                                                         <tr>
                                                                             <td align=""center"" valign=""middle"" style=""background-color:#8dd8f8;border-top-left-radius:4px;border-bottom-left-radius:4px;border-top-right-radius:4px;border-bottom-right-radius:4px;background-clip:padding-box;font-size:16px;width: 100%;font-family:Helvetica,arial,sans-serif;text-align:center;color:#ffffff;font-weight:300;padding-left: 0px;padding-right: 0px;"">
                                                                                 <span style=""color:#ffffff;font-weight:600;display:flex;width:100%"">
-                                                                                    <a style=""color:#fff;line-height: 56px;text-align:center;align-items:center;justify-content:center;height:100%;width:100%;text-decoration:none;"" href= ""{4}{5}"" target= ""_blank""> {0} </a>
+                                                                                    <a style=""color:#fff;line-height: 56px;text-align:center;align-items:center;justify-content:center;height:100%;width:100%;text-decoration:none;"" href=""{4}{5}"" target=""_blank""> {0} </a>
                                                                                 </span>
                                                                             </td>
                                                                         </tr>
@@ -577,7 +571,6 @@ namespace Empregare.Controllers
 
 
         //Deslogando o usuário - Remove as sessions existentes
-        [Route("candidato/logout")]
         public void Logout()
         {
             HttpContext.Session.Remove("UsuarioNome");

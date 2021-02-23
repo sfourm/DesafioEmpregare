@@ -16,7 +16,6 @@
         </div>
         <form asp-action="Login">
             <div class="modal-body">
-
                 <div class="account-wall">
                     <div class="form-group title">
                         <h1 class="text-center">Sistema de Login</h1>
@@ -37,7 +36,7 @@
                         <span asp-validation-for="Senha" class="text-danger"></span>
                     </div>
                     <div class="form-group divSpaceMargin">
-                        <a href="#" class="pull-right">Esqueçeu a senha?</a>
+                        <a asp-action="RecuperarSenha" class="pull-right">Esqueceu a senha?</a>
                     </div>
                 </div>
             </div>
