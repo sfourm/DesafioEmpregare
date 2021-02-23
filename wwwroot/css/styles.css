@@ -205,9 +205,6 @@ body {
 		text-align: center;
 	}
 
-/***********************/
-/*        Modal       */
-/*********************/
 .modal {
 	z-index: 2072;
 }
@@ -215,38 +212,6 @@ body {
 	z-index: 2021;
 }
 
-
-/***********************/
-/*        Perfil      */
-/*********************/
-.perfil-content .perfil-box {
-	margin: auto;
-	margin-top: 9rem;
-	width: 40%;
-	padding: 30px;
-	min-width: 400px;
-	box-shadow: 0 0.5rem 2rem 1rem rgba(0, 0, 0, 0.2);
-	font-family: 'Roboto', sans-serif;
-}
-	.perfil-content .perfil-box .title {
-		margin-bottom: 4rem;
-	}
-
-	.perfil-content .perfil-box label {
-		display: inline-block;
-		padding: 8px 12px;
-		font-family: 'Roboto';
-		font-weight: 500;
-		font-size: 1.2rem;
-		width: 100%;
-		border: none;
-		box-shadow: 0 0.1rem .5rem .1rem rgba(0, 0, 0, 0.2);
-	}
-	.perfil-content .perfil-box .div-btn {
-		margin: auto;
-		margin-top: 2rem;
-		text-align: center;
-	}
 
 /* MAX 575px */
 @media (max-width: 575px) {

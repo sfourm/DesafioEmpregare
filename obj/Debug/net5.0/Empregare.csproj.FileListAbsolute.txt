@@ -711,6 +711,7 @@ D:\Git\Empregare\obj\Debug\net5.0\Empregare.TagHelpers.input.cache
 D:\Git\Empregare\obj\Debug\net5.0\Empregare.TagHelpers.output.cache
 D:\Git\Empregare\obj\Debug\net5.0\Empregare.RazorCoreGenerate.cache
 D:\Git\Empregare\obj\Debug\net5.0\Razor\Pages\_ValidationScriptsPartial.cshtml.g.cs
+D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Home\Privacidade.cshtml.g.cs
 D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Shared\_LayoutCandidato.cshtml.g.cs
@@ -736,9 +737,3 @@ D:\Git\Empregare\obj\Debug\net5.0\ref\Empregare.dll
 D:\Git\Empregare\obj\Debug\net5.0\Empregare.pdb
 D:\Git\Empregare\obj\Debug\net5.0\Empregare.genruntimeconfig.cache
 D:\Git\Empregare\obj\Debug\net5.0\Empregare.csprojAssemblyReference.cache
-D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Vagas\Create.cshtml.g.cs
-D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Vagas\Delete.cshtml.g.cs
-D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Vagas\Details.cshtml.g.cs
-D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Vagas\Edit.cshtml.g.cs
-D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Vagas\Index.cshtml.g.cs
-D:\Git\Empregare\obj\Debug\net5.0\Razor\Views\Usuarios\Index.cshtml.g.cs

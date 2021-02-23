@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Empregare.Models.Vaga>
 
-@{ ViewData["Title"] = "Início"; }
+@{ ViewData["Title"] = "Home Page"; }
 <div id="intro" class="intro">
     <div class="intro-content">
         <div class="row">
@@ -37,6 +37,6 @@
 <div class="slider-footer">
     <div class="container text-center">
         <h3>Faça parte você também</h3>
-        <a class="btn-solid-xlg page-scroll text-decoration-none" asp-action="Cadastro">CADASTRA-SE</a>
+        <a class="btn-solid-xlg page-scroll text-decoration-none" asp-action="Cadastro" asp-controller="Usuarios">CADASTRA-SE</a>
     </div>
 </div>
