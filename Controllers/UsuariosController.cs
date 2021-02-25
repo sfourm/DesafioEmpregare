@@ -1,16 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Empregare.Data;
 using Empregare.Models;
-using System.Net.Mail;
-using Microsoft.AspNetCore.Http;
-using System.Net;
-using System;
 using Empregare.ViewModel;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Empregare.Data;
 using Newtonsoft.Json;
+using System;
+using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
+using System.Threading.Tasks;
 
 namespace Empregare.Controllers
 {
@@ -138,7 +138,7 @@ namespace Empregare.Controllers
             }
 
             EditarSenha senhaEditarSenha = new EditarSenha();
-            senhaEditarSenha.UsuarioId = usuario.UsuarioId; 
+            senhaEditarSenha.UsuarioId = usuario.UsuarioId;
             return View(senhaEditarSenha);
         }
 

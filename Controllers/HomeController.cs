@@ -1,19 +1,5 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Empregare.Models;
-using System.Net.Mail;
-using Microsoft.AspNetCore.Http;
-using System.Net;
-using System;
-using Empregare.ViewModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Empregare.Data;
-using Newtonsoft.Json;
-using System.Security.Cryptography;
-using System.Globalization;
 
 namespace Empregare.Controllers
 {
@@ -37,7 +23,7 @@ namespace Empregare.Controllers
         {
             return View();
         }
-        
+
     }
 }
 

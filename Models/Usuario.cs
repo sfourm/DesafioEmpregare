@@ -24,7 +24,7 @@ namespace Empregare.Models
 
         /// Verificação da força da senha.
         /// <returns>1 a 5 sendo 1 inaceitavel e 5 senha segura</returns>
-        public int VerifyPasswordStrong(string password) 
+        public int VerifyPasswordStrong(string password)
         {
             int totalPoint = 0;
             totalPoint += GetPointsBySize(password.Length);

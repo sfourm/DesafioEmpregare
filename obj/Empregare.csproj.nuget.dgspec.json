@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Samuel\\Desktop\\DesafioEmpregare-9b91ad60b5f2e1a81fbd264566c0b2bff3e6c0d1\\Empregare\\Empregare.csproj": {}
+    "D:\\Git\\Empregare\\Empregare.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Samuel\\Desktop\\DesafioEmpregare-9b91ad60b5f2e1a81fbd264566c0b2bff3e6c0d1\\Empregare\\Empregare.csproj": {
+    "D:\\Git\\Empregare\\Empregare.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Samuel\\Desktop\\DesafioEmpregare-9b91ad60b5f2e1a81fbd264566c0b2bff3e6c0d1\\Empregare\\Empregare.csproj",
+        "projectUniqueName": "D:\\Git\\Empregare\\Empregare.csproj",
         "projectName": "Empregare",
-        "projectPath": "C:\\Users\\Samuel\\Desktop\\DesafioEmpregare-9b91ad60b5f2e1a81fbd264566c0b2bff3e6c0d1\\Empregare\\Empregare.csproj",
+        "projectPath": "D:\\Git\\Empregare\\Empregare.csproj",
         "packagesPath": "C:\\Users\\Samuel\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Samuel\\Desktop\\DesafioEmpregare-9b91ad60b5f2e1a81fbd264566c0b2bff3e6c0d1\\Empregare\\obj\\",
+        "outputPath": "D:\\Git\\Empregare\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Samuel\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,7 +42,7 @@
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.0.0-preview.1.21102.2, )"
+              "version": "[5.0.3, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",

@@ -1,9 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Empregare.Models;
+﻿using Empregare.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Empregare.Data
 {
@@ -23,17 +19,17 @@ namespace Empregare.Data
             Cryptography cryptography = new Cryptography(System.Security.Cryptography.MD5.Create());
 
             modelBuilder.Entity<Usuario>
-            ( etd =>
-                {
-                    etd.ToTable("TabelaUsuario");
-                    etd.HasKey(p => p.UsuarioId).HasName("UsuarioId");
-                    etd.Property(p => p.UsuarioId).HasColumnType("int").ValueGeneratedOnAdd();
-                    etd.Property(p => p.Nome).IsRequired().HasMaxLength(50);
-                    etd.Property(p => p.Telefone).IsRequired().HasMaxLength(15);
-                    etd.Property(p => p.Email).IsRequired().HasMaxLength(50);
-                    etd.Property(p => p.Senha).IsRequired();
+            (etd =>
+               {
+                   etd.ToTable("TabelaUsuario");
+                   etd.HasKey(p => p.UsuarioId).HasName("UsuarioId");
+                   etd.Property(p => p.UsuarioId).HasColumnType("int").ValueGeneratedOnAdd();
+                   etd.Property(p => p.Nome).IsRequired().HasMaxLength(50);
+                   etd.Property(p => p.Telefone).IsRequired().HasMaxLength(15);
+                   etd.Property(p => p.Email).IsRequired().HasMaxLength(50);
+                   etd.Property(p => p.Senha).IsRequired();
 
-                }
+               }
             );
 
             modelBuilder.Entity<Vaga>
@@ -48,6 +44,6 @@ namespace Empregare.Data
 
            }
            );
-        }   
+        }
     }
 }
